@@ -4,11 +4,24 @@ import com.zuehlke.examples.swex_solr_demo.model.Game;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import java.util.Collection;
+/* TODO Implement search
+import org.apache.solr.client.solrj.SolrClient;
+import org.apache.solr.client.solrj.impl.HttpJdkSolrClient;
+import org.apache.solr.common.SolrInputDocument;
+import java.time.format.DateTimeFormatter;
+*/
 
 
 @Service
 @Slf4j
 public class IndexService {
+    /* TODO Implement search
+    private final SolrClient solr;
+
+    IndexService(SolrProperties solrProperties) {
+        this.solr = new HttpJdkSolrClient.Builder(solrProperties.getUrl()).build();
+    }
+    */
 
     public void reindex(Collection<Game> games) {
         log.debug("Start reindex");
@@ -17,32 +30,19 @@ public class IndexService {
         log.debug("Commit changes");
     }
 
-    private void deleteAllDocuments() {}
-    private void insertDocument(Game game) {}
-
-    /* TODO Implement search
-
-    import org.apache.solr.client.solrj.SolrClient;
-    import org.apache.solr.client.solrj.impl.HttpJdkSolrClient;
-    import org.apache.solr.common.SolrInputDocument;
-    import java.time.format.DateTimeFormatter;
-
-    private final SolrClient solr;
-
-    IndexService(SolrProperties solrProperties) {
-        this.solr = new HttpJdkSolrClient.Builder(solrProperties.getUrl()).build();
-    }
-
     private void deleteAllDocuments() {
+        /* TODO Implement search
         log.debug("Delete all games");
         try {
             solr.deleteByQuery("*.*");
         } catch (Exception e) {
             throw SolrCommunicationException.couldNotDeleteDocuments(e);
         }
+        */
     }
 
     private void insertDocument(Game game) {
+        /* TODO Implement search
         log.debug("Insert game " + game.getTitle());
         SolrInputDocument document = new SolrInputDocument();
         document.addField("id", game.getId());
@@ -71,6 +71,6 @@ public class IndexService {
         } catch (Exception e) {
             throw SolrCommunicationException.couldNotAddGame(game, e);
         }
+        */
     }
-     */
 }

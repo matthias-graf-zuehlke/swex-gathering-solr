@@ -4,30 +4,29 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.List;
+/* TODO Implement search
+import org.apache.solr.client.solrj.SolrClient;
+import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.impl.HttpJdkSolrClient;
+import java.util.List;
+import java.util.stream.Collectors;
+ */
 
 
 @Service
 @Slf4j
 public class SearchService {
-    public Collection<Integer> search(String input) {
-        return List.of();
-    }
-
     /* TODO Implement search
-
-    import org.apache.solr.client.solrj.SolrClient;
-    import org.apache.solr.client.solrj.SolrQuery;
-    import org.apache.solr.client.solrj.impl.HttpJdkSolrClient;
-    import java.util.List;
-    import java.util.stream.Collectors;
-
     private final SolrClient solr;
 
     SearchService(SolrProperties solrProperties) {
         this.solr = new HttpJdkSolrClient.Builder(solrProperties.getUrl()).build();
     }
+    */
 
     public Collection<Integer> search(String input) {
+        return List.of();
+        /* TODO Implement search
         try {
             final var solrQuery = new SolrQuery();
             solrQuery.set("q", input);
@@ -42,6 +41,6 @@ public class SearchService {
             SolrCommunicationException.cannotSearch(input, e);
             return List.of();
         }
-    }
      */
+    }
 }
