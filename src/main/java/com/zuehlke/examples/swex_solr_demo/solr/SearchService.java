@@ -8,7 +8,6 @@ import java.util.List;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.impl.HttpJdkSolrClient;
-import java.util.List;
 import java.util.stream.Collectors;
  */
 

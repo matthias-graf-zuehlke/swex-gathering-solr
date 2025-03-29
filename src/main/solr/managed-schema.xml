@@ -1,0 +1,48 @@
+<schema name="default-config" version="1.7">
+    <!-- Define only the fields needed as they are copied or similar. Other fields are added automatically -->
+    <field name="id"                type="string"       indexed="true"  stored="true" required="true" multiValued="false" />
+    <field name="_version_"         type="plong"        indexed="false" stored="false" />
+    <field name="_text_"            type="text_general" indexed="true"  stored="false"/>
+    <field name="title"             type="text_general" indexed="true"  stored="true"  required="true"  multiValued="false" />
+    <field name="team"              type="text_general" indexed="true"  stored="true" />
+    <field name="genre"             type="text_general" indexed="true"  stored="true" />
+    <uniqueKey>id</uniqueKey>
+
+    <!-- Copy fields to support full-text search -->
+    <copyField source="title" dest="_text_"/>
+    <copyField source="genre" dest="_text_"/>
+    <copyField source="team" dest="_text_"/>
+
+    <!-- Add field types etc. for automated mapping. Those filed types must be defined as they are referenced in the default solrconfig.xml -->
+    <fieldType name="string" class="solr.StrField" sortMissingLast="true" />
+    <fieldType name="strings" class="solr.StrField" sortMissingLast="true" multiValued="true" />
+    <fieldType name="booleans" class="solr.BoolField" sortMissingLast="true" multiValued="true"/>
+    <fieldType name="plong" class="solr.LongPointField"/>
+    <fieldType name="plongs" class="solr.LongPointField" multiValued="true"/>
+    <fieldType name="pdates" class="solr.DatePointField" multiValued="true"/>
+    <fieldType name="pdoubles" class="solr.DoublePointField" multiValued="true"/>
+    <!-- Type used for data-driven schema, to add a string copy for each text field -->
+    <dynamicField name="*_str" type="strings" stored="false" docValues="true" indexed="false" useDocValuesAsStored="false"/>
+    <!-- A text field with defaults appropriate for English: it tokenizes with StandardTokenizer,
+         removes English stop words (stopwords.txt), down cases, protects words from protwords.txt, and
+         finally applies Porter's stemming.  The query time analyzer also applies synonyms from synonyms.txt. -->
+    <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100" multiValued="true">
+        <analyzer type="index">
+            <tokenizer name="standard"/>
+            <filter name="stop" ignoreCase="true" words="stopwords.txt"/>
+            <filter name="lowercase"/>
+            <filter name="englishPossessive"/>
+            <filter name="keywordMarker" protected="protwords.txt"/>
+            <filter name="porterStem"/>
+        </analyzer>
+        <analyzer type="query">
+            <tokenizer name="standard"/>
+            <filter name="synonymGraph" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
+            <filter name="stop" ignoreCase="true" words="stopwords.txt" />
+            <filter name="lowercase"/>
+            <filter name="englishPossessive"/>
+            <filter name="keywordMarker" protected="protwords.txt"/>
+            <filter name="porterStem"/>
+        </analyzer>
+    </fieldType>
+</schema>

@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Initialize Database" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" path="$PROJECT_DIR$/requests.http" requestIdentifier="#1" runType="Run single request">
+  <configuration default="false" name="Initialize Database" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" path="$PROJECT_DIR$/requests.http" requestIdentifier="Initialize Database" runType="Run single request">
     <method v="2" />
   </configuration>
 </component>

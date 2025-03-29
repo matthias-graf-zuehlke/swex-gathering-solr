@@ -14,6 +14,7 @@ services:
   #      - "8983:8983"
   #  command:
   #   - solr-precreate
-  #    - games
-  #  volumes:
-  #    - ./src/main/solr:/config/conf
+  #   - games
+  #  #Uncomment to use a custom configuration
+  #  #volumes:
+  #  #  - ./src/main/solr/managed-schema.xml:/opt/solr/server/solr/configsets/_default/conf/managed-schema.xml

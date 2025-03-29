@@ -1,2 +1,2 @@
-###
+### Initialize Database
 GET http://localhost:8080/api/initialize
