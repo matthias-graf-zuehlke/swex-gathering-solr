@@ -3,7 +3,6 @@ package com.zuehlke.examples.swex_solr_demo.solr;
 import com.zuehlke.examples.swex_solr_demo.model.Game;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
 import java.util.Collection;
 
 
@@ -12,34 +11,26 @@ import java.util.Collection;
 public class IndexService {
 
     public void reindex(Collection<Game> games) {
+        log.debug("Start reindex");
+        deleteAllDocuments();
+        games.forEach(this::insertDocument);
+        log.debug("Commit changes");
     }
+
+    private void deleteAllDocuments() {}
+    private void insertDocument(Game game) {}
 
     /* TODO Implement search
 
-    import com.zuehlke.examples.swex_solr_demo.model.Game;
     import org.apache.solr.client.solrj.SolrClient;
     import org.apache.solr.client.solrj.impl.HttpJdkSolrClient;
     import org.apache.solr.common.SolrInputDocument;
     import java.time.format.DateTimeFormatter;
-    import java.util.Collection;
-
 
     private final SolrClient solr;
 
     IndexService(SolrProperties solrProperties) {
         this.solr = new HttpJdkSolrClient.Builder(solrProperties.getUrl()).build();
-    }
-
-    public void reindex(Collection<Game> games) {
-        try {
-            log.debug("Start reindex");
-            deleteAllDocuments();
-            games.forEach(this::insertDocument);
-            log.debug("Commit changes");
-            solr.commit();
-        } catch (Exception e) {
-            rollbackAndFail(e);
-        }
     }
 
     private void deleteAllDocuments() {
@@ -80,15 +71,6 @@ public class IndexService {
         } catch (Exception e) {
             throw SolrCommunicationException.couldNotAddGame(game, e);
         }
-    }
-
-    private void rollbackAndFail(Exception commitException) {
-        try {
-            solr.rollback();
-        } catch (Exception e) {
-            log.error("Could not rollback after exception. Rollback-Exception was " + e.getMessage(), e);
-        }
-        throw SolrCommunicationException.wrap(commitException);
     }
      */
 }
