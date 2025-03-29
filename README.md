@@ -22,12 +22,8 @@ When starting for the first time, the database must be initialized with the data
 To implement Solr, the following steps are necessary. All steps are marked with 'TODO Implement search' in the code
 1. Start Solr as infrastructure by adding it to the [docker-compose.yml](./docker-compose.yml) file and solr using `docker-compose up`. Afterward, Solr can be accessed at http://localhost:8983/solr/
 2. Add the SolrJ dependency to the project in the [pom.xml](./pom.xml) file
-
-
-code.
-* Add SolrJ dependency to the project in file [pom.xml](./pom.xml)
-* Implement the initialization in [SearchService.java](./src/main/java/com/zuehlke/examples/swex_solr_demo/solr/SearchService.java)
-* Implement the search in [IndexService.java](src/main/java/com/zuehlke/examples/swex_solr_demo/solr/IndexService.java)
+3.Implement the initialization in [SearchService.java](./src/main/java/com/zuehlke/examples/swex_solr_demo/solr/SearchService.java)
+4.Implement the search in [IndexService.java](src/main/java/com/zuehlke/examples/swex_solr_demo/solr/IndexService.java)
 
 # Links
 

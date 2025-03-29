@@ -8,16 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.view.RedirectView;
 import com.zuehlke.examples.swex_solr_demo.model.Game;
 import com.zuehlke.examples.swex_solr_demo.model.GameRepository;
-import com.zuehlke.examples.swex_solr_demo.solr.AutocompleteResult;
 import com.zuehlke.examples.swex_solr_demo.solr.SearchService;
 
 import java.util.Collection;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -62,14 +59,5 @@ public class GameController {
             final var gameIds = searchService.search(search);
             return gameRepository.findAllById(gameIds);
         }
-    }
-
-    @ResponseBody
-    @GetMapping("/api/games/autocomplete")
-    public Collection<AutocompleteResult> autocomplete(@Param("search") String search) {
-        if (search == null) {
-            return List.of();
-        }
-        return searchService.autocomplete(search);
     }
 }
